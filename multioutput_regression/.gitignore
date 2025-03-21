@@ -1,0 +1,12 @@
+.DS_Store
+*.pyc
+mlflow*
+meta*
+*.png
+*.pdf
+*.pqt
+*.log
+*.ini
+notebooks/mlruns/*
+mlruns/
+*.pkl
