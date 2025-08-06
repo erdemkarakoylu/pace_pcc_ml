@@ -12,5 +12,3 @@ Model's Bayesian hyperparameter optimization was conducted using Optuna.
 
 Shapley values were used to explain predictions. 
 
-The manuscript repository can be found [here](https://github.com/erdemkarakoylu/PCC_PACE_manuscript/tree/main).
-
