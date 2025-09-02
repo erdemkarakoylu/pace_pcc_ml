@@ -4,6 +4,9 @@ PFG-ML Statement of Work-2025.pdf
 *.pkl
 *.pqt
 *.nc
-*.txt
 *.png
 litterature
+*.html
+*.pdf
+README_files/
+*.pyc
