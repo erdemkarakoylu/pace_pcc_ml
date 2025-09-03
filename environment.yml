@@ -13,6 +13,10 @@ dependencies:
   - scikit-learn=1.6.*
   - xgboost=2.1.4
 
+# Plotting + notebooks (optional but handy)
+  - matplotlibß=3.9.2
+  - ipykernel
+
   # Optimization + Explainability
   - optuna=4.*
   - shap>=0.46,<0.47
@@ -28,6 +32,4 @@ dependencies:
       - typer==0.16.0
       - loguru==0.7.3
 
-  # Plotting + notebooks (optional but handy)
-  - matplotlib>=3.9,<3.11
-  - ipykernel
+ 

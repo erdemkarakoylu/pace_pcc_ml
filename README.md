@@ -20,16 +20,7 @@ This repository contains code to predict **Phytoplankton Community Composition (
    conda env update -f environment.yml --prune
    conda activate phyx
    ```
-
-2. **(If needed) Ensure Parquet support**
-   The loader uses `engine="pyarrow"`. If `pyarrow` is missing, add it to `environment.yml` and update the env:
-
-   ```yaml
-   # environment.yml -> dependencies:
-   - pyarrow
-   ```
-
-3. **(Optional) Developer tools**
+2. **(Optional) Developer tools**
 
    * Quick tests: `pytest` (add to `environment.yml` or `pip install pytest`)
    * Git hooks: `pre-commit` (optional)
@@ -84,7 +75,7 @@ python -m phyx.cli --help
   ```
   data_any_dataset/
     df_rrs.pqt      # features (e.g., Rrs_* and/or ancillary columns)
-    df_phyto.pqt    # targets: dia, chl, cya, coc, din, pha, tot_chla
+    df_phy.pqt      # targets: dia, chl, cya, coc, din, pha, tot_chla
     df_env.pqt      # optional ancillary features (same rows), optional
   ```
 * If you choose to restrict wavelengths (e.g., to a sensor band range), do that upstream in your **preprocessing** and save as a separate dataset folder.
