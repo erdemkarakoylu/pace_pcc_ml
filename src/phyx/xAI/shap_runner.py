@@ -4,7 +4,7 @@ from typing import Sequence
 import joblib
 import numpy as np
 import shap
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pp
 from loguru import logger
 
 
@@ -28,12 +28,12 @@ def run_shap_and_plots(model_path: Path, X_df, target_names: Sequence[str], outd
         shap_values.append(sv)
 
         # summary plot for this target
-        plt.figure()
+        pp.figure()
         shap.summary_plot(sv, Xs, feature_names=feats, show=False)
         fig_path = outdir / f"shap_summary_target_{target_names[i] if i < len(target_names) else i}.png"
-        plt.tight_layout()
-        plt.savefig(fig_path, dpi=200)
-        plt.close()
+        pp.tight_layout()
+        pp.savefig(fig_path, dpi=200)
+        pp.close()
         logger.info("Saved SHAP summary → %s", fig_path)
 
     npz_path = outdir / "shap_values.npz"

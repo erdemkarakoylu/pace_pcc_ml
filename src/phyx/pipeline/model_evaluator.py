@@ -7,8 +7,14 @@ class ModelEvaluator:
 
     def evaluate(self, y_true, y_pred):
         """Return MSE, R2, MAE, RMSE."""
-        mse = mean_squared_error(y_true, y_pred)
-        r2 = r2_score(y_true, y_pred)
-        mae = median_absolute_error(y_true, y_pred)
-        rmse = float(np.sqrt(mse))
+        mse = mean_squared_error(
+            y_true, y_pred, 
+            multioutput="raw_values" if y_true.shape[1] > 1 else "uniform_average")
+        r2 = r2_score(
+            y_true, y_pred, 
+            multioutput="raw_values" if y_true.shape[1] > 1 else "uniform_average")
+        mae = median_absolute_error(
+            y_true, y_pred, 
+            multioutput="raw_values" if y_true.shape[1] > 1 else "uniform_average")
+        rmse = np.sqrt(mse)
         return mse, r2, mae, rmse

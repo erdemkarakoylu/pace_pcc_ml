@@ -8,7 +8,7 @@ from .pipeline.data_loader import DataLoader
 from .pipeline.model_trainer import XGBoostTrainer
 from .pipeline.model_evaluator import ModelEvaluator
 from .pipeline.optuna_hpo import objective
-from .pipeline.shap_runner import run_shap_and_plots
+from .xAI.shap_runner import run_shap_and_plots
 
 app = typer.Typer(add_completion=False)
 
@@ -22,9 +22,10 @@ def main(verbose: bool = typer.Option(False, "--verbose", "-v")):
 
 @app.command()
 def run_all(
-    data_path: Path = typer.Option(..., help="Folder with df_rrs.pqt / df_phyto.pqt"),
+    data_path: Path = typer.Option(..., help="Folder with df_rrs.pqt / df_phyto_types.pqt"),
     outdir: Path = typer.Option(Path("artifacts/pace"), help="Output directory"),
     n_trials: int = typer.Option(50, help="Optuna trials"),
+    cv_folds: int  = typer.Option(3, help="CV folds per Optuna trial (1 = single holdout)"),
     test_size: float = typer.Option(0.2, help="Holdout fraction"),
     seed: int = typer.Option(42, help="Random seed"),
     fit_all: bool = typer.Option(False, help="After evaluation, fit a final production model on train+test"),
@@ -44,7 +45,7 @@ def run_all(
 
     # 2) HPO
     study = optuna.create_study(direction="minimize")
-    study.optimize(lambda t: objective(t, Xtr, Ytr), n_trials=n_trials, show_progress_bar=False)
+    study.optimize(lambda t: objective(t, Xtr, Ytr), n_trials=n_trials, kfolds=cv_folds, show_progress_bar=False)
     best_params = study.best_trial.params | {"objective": "reg:squarederror"}
     (outdir / "best_params.json").write_text(json.dumps(best_params, indent=2))
     logger.success("Best params saved → {}", outdir / "best_params.json")

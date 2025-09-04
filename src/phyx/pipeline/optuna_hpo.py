@@ -7,7 +7,7 @@ from sklearn.metrics import mean_squared_error
 from .model_trainer import XGBoostTrainer
 
 
-def objective(trial: optuna.Trial, X, Y) -> float:
+def objective(trial: optuna.Trial, X, Y, kfolds:int=3) -> float:
     """Optuna objective with KFold CV (matches your notebook behavior)."""
     params = dict(
         objective="reg:squarederror",
@@ -19,7 +19,7 @@ def objective(trial: optuna.Trial, X, Y) -> float:
         gamma=trial.suggest_float("gamma", 1e-8, 1.0, log=True),
     )
 
-    cv = KFold(n_splits=3, shuffle=True, random_state=42)
+    cv = KFold(n_splits=kfolds, shuffle=True, random_state=42)
     rmses = []
     for tr_idx, va_idx in cv.split(X):
         Xtr, Xva = X.iloc[tr_idx], X.iloc[va_idx]
@@ -30,5 +30,6 @@ def objective(trial: optuna.Trial, X, Y) -> float:
         rmses.append(np.sqrt(mean_squared_error(Yva, Yhat)))
 
     score = float(np.mean(rmses))
-    logger.debug("Trial {} → RMSE={:.4f} with params={}", trial.number, score, params)
+    logger.debug("Trial {} ({}-fold) → RMSE={:.4f}", trial.number, kfolds, score, params)
+
     return score

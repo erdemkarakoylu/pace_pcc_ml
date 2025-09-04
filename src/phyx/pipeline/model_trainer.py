@@ -40,7 +40,7 @@ class XGBoostTrainer:
     def fit_full(self, X_train, y_train) -> MultiOutputRegressor:
         """Fit on the full provided training set (used after HPO)."""
         est = self._build()
-        logger.info("Fitting on FULL training set: %d rows × %d features", X_train.shape[0], X_train.shape[1])
+        logger.info(f"Fitting on FULL training set: {X_train.shape[0]} rows × {X_train.shape[1]} features")
         est.fit(X_train, y_train)
         self.model = est
         self.X_train_ = np.asarray(X_train)
