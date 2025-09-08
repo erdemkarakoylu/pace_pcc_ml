@@ -10,3 +10,7 @@ litterature
 *.pdf
 README_files/
 *.pyc
+test_results.txt
+.gitignore
+notebooks/artifacts/pace_run/metrics.json
+notebooks/artifacts/pace_run/shap_values.npz
