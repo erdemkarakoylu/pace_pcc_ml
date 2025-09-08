@@ -8,7 +8,7 @@ from .pipeline.data_loader import DataLoader
 from .pipeline.model_trainer import XGBoostTrainer
 from .pipeline.model_evaluator import ModelEvaluator
 from .pipeline.optuna_hpo import objective
-from .xAI.shap_runner import run_shap_and_plots
+from .synthesis.shap_runner import run_shap_and_plots
 
 app = typer.Typer(add_completion=False)
 

@@ -94,10 +94,11 @@ The `run-all` command:
 
 ```bash
 phyx run-all \
-  --data-path data_any_dataset \
-  --n-trials 50 \
+  --data-path data_directory \
+  --n-trials 50 \      # number of HPO trials
+  --cv-folds 5 \       # optional, default=3
   --outdir artifacts/pace_run \
-  --fit-all            # optional: also save model_production.pkl (trained on ALL data)
+  --fit-all            # optional for production model: also saves model_production.pkl (trained on ALL data - train + test)
 ```
 
 **Outputs (in `--outdir`)**
@@ -131,6 +132,7 @@ If you want a quick check without burning compute:
 phyx run-all \
   --data-path data_any_dataset \
   --n-trials 5 \
+  --cv-folds 2 \       # quick test
   --outdir artifacts/smoke
 ```
 
@@ -159,7 +161,7 @@ src/phyx/
     optuna_hpo.py        # Optuna objective (KFold CV inside trials)
     model_trainer.py     # XGB multi-output training & saving
     model_evaluator.py   # metrics (MSE/RMSE/MAE/R²)
-  explain/
+  synthesis/
     shap_runner.py       # SHAP values + per-target summary plots
 ```
 
