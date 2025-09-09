@@ -1,0 +1,6 @@
+pace_10nm_340_720:
+  kind: whitelist
+  prefix: Rrs_
+  start_nm: 340
+  stop_nm: 720
+  step_nm: 10
