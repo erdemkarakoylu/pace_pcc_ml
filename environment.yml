@@ -1,0 +1,35 @@
+name: phyx
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  # Core runtime (Python 3.12 for long-term support and wide wheel coverage)
+  - python=3.12
+
+  # Numerics / ML backbone
+  - numpy>=2.0,<2.3
+  - pandas>=2.2,<2.3
+  - scipy>=1.13,<1.17
+  - scikit-learn=1.6.*
+  - xgboost=2.1.4
+
+# Plotting + notebooks (optional but handy)
+  - matplotlibß=3.9.2
+  - ipykernel
+
+  # Optimization + Explainability
+  - optuna=4.*
+  - shap>=0.46,<0.47
+
+  # IO / Parquet
+  - pyarrow=16.*
+
+  # CLI + config + typing
+  - pydantic>=2.7,<2.9
+  - pyyaml>=6.0.1,<7
+  - pip  # keep pip available for anything extra
+  - pip:
+      - typer==0.16.0
+      - loguru==0.7.3
+
+ 
