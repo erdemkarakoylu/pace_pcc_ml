@@ -1,5 +1,7 @@
 # PACE PCC ML — Reproducible, one-command pipeline
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17281671.svg)](https://doi.org/10.5281/zenodo.17281671)
+
 This repository contains code to predict **Phytoplankton Community Composition (PCC)** from hyperspectral sea-surface reflectance (Rrs) and optional ancillary features using **XGBoost** with a **multi-output** head. Targets (7): Diatoms (dia), Chlorophytes (chl), Cyanobacteria (cya), Coccolithophores (coc), Dinoflagellates (din), Phaeocystis (pha), and total chlorophyll-a (tot\_chla).
 **Hyperparameter optimization:** Optuna.
 **Explainability:** SHAP (summary plots per target).
