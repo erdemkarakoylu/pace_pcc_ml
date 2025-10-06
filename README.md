@@ -66,6 +66,7 @@ python -m phyx.cli --help
 
 ## Data expectations
 
+Developmen dataset can be found here:  [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17281390.svg)](https://doi.org/10.5281/zenodo.17281390)
 * The pipeline is **dataset-agnostic**: it uses whatever feature columns are present in `df_rrs.pqt` (and optional `df_env.pqt`) without internal filtering.
 * Requirements:
 
