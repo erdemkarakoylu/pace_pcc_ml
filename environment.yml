@@ -14,7 +14,7 @@ dependencies:
   - xgboost=2.1.4
 
 # Plotting + notebooks (optional but handy)
-  - matplotlibß=3.9.2
+  - matplotlib=3.9.2
   - ipykernel
 
   # Optimization + Explainability
