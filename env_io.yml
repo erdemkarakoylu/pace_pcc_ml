@@ -12,4 +12,5 @@ dependencies:
   - s3fs
   - dask
   - matplotlib
+  - scikit-learn=1.6
   - ipykernel
